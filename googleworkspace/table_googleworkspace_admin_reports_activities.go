@@ -131,18 +131,6 @@ func tableGoogleWorkspaceAdminReportsActivities(_ context.Context) *plugin.Table
 				Transform:   transform.FromField("Actor.CallerType"),
 			},
 			{
-				Name:        "start_time",
-				Description: "A start time to retreive data for",
-				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromQual("start_time"),
-			},
-			{
-				Name:        "end_time",
-				Description: "An end time to retreive data for",
-				Type:        proto.ColumnType_STRING,
-				Transform:   transform.FromQual("end_time"),
-			},
-			{
 				Name:        "event_name",
 				Description: "The name of the event being queried by the API",
 				Type:        proto.ColumnType_STRING,
