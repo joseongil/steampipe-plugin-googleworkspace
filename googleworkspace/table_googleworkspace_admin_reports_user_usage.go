@@ -6,8 +6,6 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v3/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
-
-	admin "google.golang.org/api/admin/reports/v1"
 )
 
 //// TABLE DEFINITION
@@ -182,7 +180,7 @@ func listAdminReportsUserUsage(ctx context.Context, d *plugin.QueryData, _ *plug
 		resp = resp.GroupIdFilter(group_id_filter)
 	}
 
-	if err := resp.Pages(ctx, func(page *admin.UsageReports) error {
+	if err := resp.Pages(ctx, func(page *UsageReports) error {
 		for _, item := range page.UsageReports {
 			d.StreamListItem(ctx, item)
 

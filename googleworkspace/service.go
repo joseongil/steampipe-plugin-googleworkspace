@@ -6,7 +6,6 @@ import (
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
-	admin "google.golang.org/api/admin/reports/v1"
 	"google.golang.org/api/calendar/v3"
 	"google.golang.org/api/drive/v3"
 	"google.golang.org/api/gmail/v1"
@@ -116,11 +115,11 @@ func GmailService(ctx context.Context, d *plugin.QueryData) (*gmail.Service, err
 	return svc, nil
 }
 
-func AdminReportsService(ctx context.Context, d *plugin.QueryData) (*admin.Service, error) {
+func AdminReportsService(ctx context.Context, d *plugin.QueryData) (*Service, error) {
 	// have we already created and cached the service?
 	serviceCacheKey := "googleworkspace.AdminReports"
 	if cachedData, ok := d.ConnectionManager.Cache.Get(serviceCacheKey); ok {
-		return cachedData.(*admin.Service), nil
+		return cachedData.(*Service), nil
 	}
 
 	// so it was not in cache - create service
@@ -130,7 +129,7 @@ func AdminReportsService(ctx context.Context, d *plugin.QueryData) (*admin.Servi
 	}
 
 	// Create service
-	svc, err := admin.NewService(ctx, opts...)
+	svc, err := NewService(ctx, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -231,8 +230,8 @@ func getTokenSource(ctx context.Context, d *plugin.QueryData) (oauth2.TokenSourc
 		people.ContactsOtherReadonlyScope,
 		people.ContactsReadonlyScope,
 		people.DirectoryReadonlyScope,
-		admin.AdminReportsAuditReadonlyScope,
-		admin.AdminReportsUsageReadonlyScope,
+		AdminReportsAuditReadonlyScope,
+		AdminReportsUsageReadonlyScope,
 	)
 	if err != nil {
 		return nil, err

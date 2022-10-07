@@ -8,8 +8,6 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v3/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
-
-	admin "google.golang.org/api/admin/reports/v1"
 )
 
 //// TABLE DEFINITION
@@ -269,7 +267,7 @@ func listAdminReportsActivities(ctx context.Context, d *plugin.QueryData, _ *plu
 
 	fmt.Println(actor_ip_address, customer_id, event_name, filters, org_unit_id, group_id_filter)
 
-	if err := resp.Pages(ctx, func(page *admin.Activities) error {
+	if err := resp.Pages(ctx, func(page *Activities) error {
 		for _, item := range page.Items {
 			d.StreamListItem(ctx, item)
 

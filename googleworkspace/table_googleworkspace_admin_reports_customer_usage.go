@@ -6,8 +6,6 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v3/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
-
-	admin "google.golang.org/api/admin/reports/v1"
 )
 
 //// TABLE DEFINITION
@@ -108,10 +106,9 @@ func listAdminReportsCustomerUsage(ctx context.Context, d *plugin.QueryData, _ *
 		resp = resp.Parameters(parameters)
 	}
 
-	if err := resp.Pages(ctx, func(page *admin.UsageReports) error {
+	if err := resp.Pages(ctx, func(page *UsageReports) error {
 		for _, item := range page.UsageReports {
 			d.StreamListItem(ctx, item)
-
 			// Context can be cancelled due to manual cancellation or the limit has been hit
 			if plugin.IsCancelled(ctx) {
 				page.NextPageToken = ""
