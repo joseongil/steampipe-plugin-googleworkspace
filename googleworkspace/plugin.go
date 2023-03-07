@@ -13,7 +13,7 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
 )
 
-const pluginName = "steampipe-plugin-googleworkspace"
+const pluginName = "steampipe-plugin-googleworkspace-zb"
 
 // Plugin creates this (googleworkspace) plugin
 func Plugin(ctx context.Context) *plugin.Plugin {

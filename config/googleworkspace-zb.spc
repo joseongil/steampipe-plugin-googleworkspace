@@ -1,5 +1,5 @@
-connection "googleworkspace" {
-  plugin = "googleworkspace"
+connection "googleworkspacezb" {
+  plugin = "googleworkspace-zb"
 
   # You may connect to Google Workspace using more than one option:
   # 1. To authenticate using domain-wide delegation, specify  a service account credential file and the user email for impersonation
